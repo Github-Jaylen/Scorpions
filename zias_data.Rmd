@@ -1,0 +1,72 @@
+---
+title: "Zias_data"
+author: "Jaylen Johnson"
+date: "2023-04-11"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r include=FALSE}
+require(tidyverse)
+require(tigerstats)
+mydata <- read.csv(file="Zias_data.csv")
+mydata$Scorpion_ID <- as.factor(mydata$Scorpion_ID)
+```
+
+#   Analysis of NumProbes
+
+```{r}
+boxplot(NumProbes~Scorpion_ID,data=mydata)
+```
+
+
+This plot shows that when the scorpions were at higher temperatures they were more likely to sting than those who were kept at lower temperatures.
+
+```{r}
+favstats(NumProbes~Scorpion_ID,data=mydata)
+```
+
+
+The average amount of probes for scorpions placed in high temperatures was 6.5 which is much lower than that of the 23.5 of those placed in lower temperatures.  
+
+
+```{r}
+t.test(NumProbes~Scorpion_ID,data=mydata)
+```
+  
+This data at the 95% confidence level has some difference between scorpions that are proved at low and high temperatures. 
+
+#   Analysis of TimeSting
+
+```{r}
+boxplot(TimeSting~Scorpion_ID,data=mydata)
+```
+
+This plot shows that it took Scorpions at lower temperatures longer to sting than that of scorpions at higher temperatures.
+
+```{r}
+favstats(TimeSting~Scorpion_ID,data=mydata)
+```
+
+
+Scorpions placed in higher temperatures on average took 3 times less time to sting than that of the scorpions in lower temperatures.
+
+```{r}
+t.test(TimeSting~Scorpion_ID,data=mydata,conf.level=.9)
+```
+
+At the 90% confidence level it can be concluded that there is a difference between scorpions placed in lower or higher temperatures.  At confidence levels 95% and 99% there is no discernible difference between the scorpions.
+
+
+
+
+
+
+
+
+
+
+
